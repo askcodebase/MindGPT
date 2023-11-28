@@ -1,9 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
+import { createRoot } from 'react-dom/client'
+import MarkmapHooks from './MarkMap'
+import './global.css'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
+function App() {
+  return <MarkmapHooks />
+}
+
+const root = createRoot(document.getElementById('root')!)
+root.render(<App />)
