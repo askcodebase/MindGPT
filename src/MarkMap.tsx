@@ -32,22 +32,17 @@ function renderToolbar(mm: Markmap, wrapper: HTMLElement) {
 
 export default function MarkmapHooks() {
   const [value, setValue] = useState(initValue)
-  // Ref for SVG element
   const refSvg = useRef<SVGSVGElement | null>(null)
-  // Ref for markmap object
   const refMm = useRef<Markmap>()
-  // Ref for toolbar wrapper
   const refToolbar = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    // Create markmap and save to refMm
     const mm = Markmap.create(refSvg.current!)
     refMm.current = mm
     renderToolbar(refMm.current, refToolbar.current!)
   }, [refSvg.current])
 
   useEffect(() => {
-    // Update data for markmap once value is changed
     const mm = refMm.current
     if (!mm) return
     const { root } = transformer.transform(value)
@@ -60,7 +55,7 @@ export default function MarkmapHooks() {
   }
 
   return (
-    <React.Fragment>
+    <>
       <div className='flex-1'>
         <textarea
           className='w-full h-full border border-gray-400'
@@ -70,6 +65,6 @@ export default function MarkmapHooks() {
       </div>
       <svg className='flex-1' ref={refSvg} />
       <div className='absolute bottom-1 right-1' ref={refToolbar}></div>
-    </React.Fragment>
+    </>
   )
 }
